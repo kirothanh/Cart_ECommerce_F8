@@ -9,6 +9,8 @@ import {
   decreaseProduct,
   removeProduct,
 } from "../redux-toolkit/slices/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -20,11 +22,31 @@ export default function Cart() {
   };
 
   const handleDecrementProduct = (product) => {
-    dispatch(decreaseProduct(product));
+    if (product.quantityNew === 1) {
+      toast.warn("Nhấn xác nhận để xóa sản phẩm này", {
+        autoClose: 3000,
+        closeOnClick: false,
+        position: "top-center",
+        onClick: () => {
+          dispatch(removeProduct(product));
+          toast.dismiss();
+        },
+      });
+    } else {
+      dispatch(decreaseProduct(product));
+    }
   };
 
   const handleRemoveProduct = (product) => {
-    dispatch(removeProduct(product));
+    toast.warn("Nhấn xác nhận để xóa sản phẩm này", {
+      autoClose: 3000,
+      closeOnClick: false,
+      position: "top-center",
+      onClick: () => {
+        dispatch(removeProduct(product));
+        toast.dismiss();
+      },
+    });
   };
 
   const handleCheckout = () => {
@@ -119,6 +141,7 @@ export default function Cart() {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

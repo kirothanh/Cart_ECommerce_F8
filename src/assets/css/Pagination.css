@@ -1,0 +1,9 @@
+.pagination .selected {
+  font-weight: bold;
+  color: #ff7a00; 
+}
+
+.pagination .disabled {
+  color: #ccc; 
+  pointer-events: none;
+}

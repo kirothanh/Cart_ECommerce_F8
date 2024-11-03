@@ -90,6 +90,7 @@ export default function ProductList() {
           totalPage={totalPage}
           limitProduct={limitProduct}
           onPageChange={handlePageChange}
+          currentPage={currentPage}
         />
       </div>
     </div>
